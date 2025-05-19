@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: visitor-counter-backend
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+
+  - type: static
+    name: visitor-counter-frontend
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://visitor-counter-backend.onrender.com 
