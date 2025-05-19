@@ -1,0 +1,12 @@
+# Ignore node_modules for the backend and frontend
+node_modules/
+client/node_modules/
+
+# Ignore build directories
+client/build/
+
+# Ignore .env files
+.env
+
+# Ignore log files
+*.log 
