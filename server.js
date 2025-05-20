@@ -6,21 +6,22 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:3000';
+
 // Configure CORS
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://visitor-counter-frontend.onrender.com'
-    : 'http://localhost:3000',
-  methods: ["GET", "POST"]
+  origin: allowedOrigin,
+  methods: ["GET", "POST"],
+  credentials: true
 }));
 
 // Create Socket.IO server with CORS configuration
 const io = new Server(server, {
   cors: {
-    origin: process.env.NODE_ENV === 'production'
-      ? 'https://visitor-counter-frontend.onrender.com'
-      : 'http://localhost:3000',
-    methods: ["GET", "POST"]
+    origin: allowedOrigin,
+    methods: ["GET", "POST"],
+    credentials: true,
+    transports: ['websocket', 'polling']
   }
 });
 
@@ -29,6 +30,7 @@ let visitorCount = 0;
 
 // Socket.IO connection handling
 io.on('connection', (socket) => {
+  console.log('New client connected');
   // Increment counter when a new client connects
   visitorCount++;
   
@@ -37,9 +39,15 @@ io.on('connection', (socket) => {
   
   // Handle disconnection
   socket.on('disconnect', () => {
+    console.log('Client disconnected');
     visitorCount--;
     io.emit('visitorCount', visitorCount);
   });
+});
+
+// Add a basic route for testing
+app.get('/', (req, res) => {
+  res.send('Server is running');
 });
 
 // Start the server
