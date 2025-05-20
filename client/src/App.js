@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     // Connect to the Socket.IO server through the environment variable
-    const socket = io(process.env.REACT_APP_API_URL || 'http://localhost:4000', {
+    const socket = io(process.env.REACT_APP_API_URL || 'visitor-counter-backend-production.up.railway.app', {
       transports: ['websocket'],
       secure: true,
       reconnection: true,
