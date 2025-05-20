@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     // Connect to the Socket.IO server through ngrok
-    const socket = io('https://2de8-202-66-167-213.ngrok-free.app', {
+    const socket = io('visitor-counter-backend-production.up.railway.app', {
       transports: ['websocket'],
       secure: true,
       reconnection: true,
