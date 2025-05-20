@@ -3,9 +3,9 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #f8f8f8;
+  color: #333;
 }
 
 .App-logo {
@@ -20,10 +20,13 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  padding: 1rem;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
   width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-link {
@@ -48,56 +51,59 @@ nav ul {
 }
 
 nav li {
-  margin: 0 15px;
+  margin: 0 20px;
 }
 
 nav a {
-  color: white;
+  color: #333;
   text-decoration: none;
   font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #007bff;
 }
 
-.content {
+.content-area {
   flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  padding: 1rem;
+  max-width: 900px;
+  padding: 2rem;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  text-align: left;
 }
 
-.visitor-counter {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.visitor-counter-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
   text-align: center;
 }
 
-h1 {
+.visitor-counter-section h1 {
   color: #333;
   margin-bottom: 1rem;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
-.count {
-  font-size: 4rem;
+.visitor-counter-section .count {
+  font-size: 5rem;
   font-weight: bold;
-  color: #2196f3;
+  color: #007bff;
   margin: 1rem 0;
 }
 
-p {
-  color: #666;
-  margin: 0;
+.visitor-counter-section p {
+  color: #555;
+  margin: 0.5rem 0;
 }
 
 .status {
-  margin-top: 1rem !important;
   font-size: 0.9rem;
   color: #666;
   font-style: italic;
@@ -107,18 +113,68 @@ p {
   margin-top: 1.5rem;
 }
 
-.navigation-buttons button {
-  margin: 0 10px;
-  padding: 10px 20px;
-  font-size: 1rem;
+/* Apply button styles to buttons within .navigation-buttons or .article-section */
+.navigation-buttons button, .article-section button {
+  margin: 0 15px;
+  padding: 12px 25px;
+  font-size: 1.05rem;
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background-color: #2196f3;
+  background-color: #007bff;
   color: white;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-.navigation-buttons button:hover {
-  background-color: #1976d2;
+.navigation-buttons button:hover, .article-section button:hover {
+  background-color: #0056b3;
+}
+
+.navigation-buttons button:active, .article-section button:active {
+  transform: scale(0.98);
+}
+
+.article-section h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 0.5rem;
+}
+
+.article-section p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav li {
+    margin: 5px 0;
+  }
+
+  .content-area {
+    padding: 1rem;
+  }
+
+  .visitor-counter-section .count {
+    font-size: 4rem;
+  }
+
+  .navigation-buttons button {
+    margin: 5px 0;
+    width: 80%;
+  }
+
+  .article-section button {
+     margin: 5px auto; /* Center button on small screens */
+     display: block; /* Make button a block element to center */
+     width: 80%;
+  }
 }
